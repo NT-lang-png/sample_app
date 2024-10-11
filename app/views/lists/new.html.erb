@@ -2,7 +2,15 @@
 <!--<p>Find me in app/views/lists/new.html.erb</p>-->
 
 <h1>新規投稿</h1>
-<!--from_withにオプション追記-->
+<% if @list.errors.any? %>
+  <%= @list.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @list.errors.full_massages.each do |massage| %>
+    <li><%= massage %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_with model: @list, url: '/lists',method: :post do |f| %>
 
   <h4>タイトル</h4>
